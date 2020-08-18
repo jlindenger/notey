@@ -1,3 +1,5 @@
+import { DatePickerIOSProps } from "react-native";
+
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
@@ -19,4 +21,11 @@ export type TasksParamList = {
 
 export type SettingsParamList = {
   SettingsScreen: undefined;
+};
+
+export type Note = {
+  title: string;
+  content: string;
+  created: Date;
+  updated: Date;
 };

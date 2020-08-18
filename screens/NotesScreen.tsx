@@ -2,6 +2,15 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 
 import { Text, View } from "../components/Themed";
+import NoteCard from "../components/NoteCard";
+import { Note } from "../types";
+
+const testNote: Note = {
+  title: "Note title",
+  content: "Content",
+  created: new Date(),
+  updated: new Date(),
+};
 
 export default function NotesScreen() {
   return (
@@ -12,6 +21,11 @@ export default function NotesScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
+      <NoteCard note={testNote}></NoteCard>
+      <NoteCard note={testNote}></NoteCard>
+      <NoteCard note={testNote}></NoteCard>
+      <NoteCard note={testNote}></NoteCard>
+      <NoteCard note={testNote}></NoteCard>
     </View>
   );
 }
