@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
 
-import { Text, View } from "../components/Themed";
+import { Text, View, ScrollView } from "../components/Themed";
 import NoteCard from "../components/NoteCard";
 import { Note } from "../types";
 
@@ -12,20 +12,29 @@ const testNote: Note = {
   updated: new Date(),
 };
 
+const noteList: Note[] = [];
+for (let i = 0; i < 20; i += 1) {
+  noteList.push(testNote);
+}
+
 export default function NotesScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Notes</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <NoteCard note={testNote}></NoteCard>
-      <NoteCard note={testNote}></NoteCard>
-      <NoteCard note={testNote}></NoteCard>
-      <NoteCard note={testNote}></NoteCard>
-      <NoteCard note={testNote}></NoteCard>
+      <ScrollView style={styles.scrollView}>
+        {noteList.map((note, i) => (
+          <>
+            <NoteCard key={i} note={note}></NoteCard>
+            {i !== noteList.length - 1 ? (
+              <View
+                key={`{i}sep`}
+                style={styles.separator}
+                lightColor="#eee"
+                darkColor="rgba(255,255,255,0.1)"
+              />
+            ) : null}
+          </>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -33,15 +42,13 @@ export default function NotesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
+  scrollView: {
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
   separator: {
-    marginVertical: 30,
+    // marginVertical: 30,
     height: 1,
     width: "80%",
   },
