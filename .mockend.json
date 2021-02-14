@@ -1,0 +1,8 @@
+{
+    "Notes": {
+        "title": "string",
+        "content": "string",
+        "created": "date",
+        "updated": "date"
+    }
+  }
