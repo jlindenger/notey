@@ -20,12 +20,14 @@ for (let i = 0; i < 20; i += 1) {
 }
 
 export default function NotesScreen() {
-  let selectedNote: Note | null = null;
+  const [selectedNote, setSelectedNote] = React.useState<Note | null>(null);
+  const closeNote = () => setSelectedNote(null);
+
   return (
     <View style={styles.container}>
       {selectedNote ?
-        <NoteDetail note={selectedNote} /> :
-        <NoteList notes={notes} />
+        <NoteDetail note={selectedNote} onCloseNote={closeNote}/> :
+        <NoteList notes={notes} onSelectNote={setSelectedNote} />
       }
     </View>
   );
